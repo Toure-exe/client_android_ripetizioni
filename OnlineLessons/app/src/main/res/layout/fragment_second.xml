@@ -7,7 +7,7 @@
     tools:context=".SecondFragment">
 
     <EditText
-        android:id="@+id/passwordText5"
+        android:id="@+id/EmailText"
         android:layout_width="294dp"
         android:layout_height="51dp"
         android:layout_marginStart="100dp"

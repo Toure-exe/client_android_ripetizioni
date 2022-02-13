@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.onlinelessons.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_HomeFragment_to_BookingFragment"
+            app:destination="@id/nav_booking" />
+        <action
+            android:id="@+id/action_HomeFragment_to_HistoryFragment"
+            app:destination="@id/nav_slideshow" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_booking"
+        android:name="com.example.onlinelessons.ui.gallery.BookingFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_booking" />
+
+
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.onlinelessons.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow"/>
+
+</navigation>

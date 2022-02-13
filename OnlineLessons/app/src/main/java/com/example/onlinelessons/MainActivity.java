@@ -51,13 +51,6 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
@@ -89,70 +82,4 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-   /* public void onRegistrationButton(View v){
-        TextView emailobj = findViewById(R.id.emailText);
-        TextView pass1obj = findViewById(R.id.passwordText);
-        TextView pass2obj = findViewById(R.id.passwordText2);
-        String email = emailobj.getText().toString();
-        String pass1 = pass1obj.getText().toString();
-        String pass2 = pass2obj.getText().toString();
-
-
-        if((!email.equals("") && !pass1.equals("") && !pass2.equals(""))){
-            if(email.contains("@") && email.contains(".")){
-                if(pass1.equals(pass2)){
-                   // Toast.makeText(MainActivity.this, "UGUALI ", Toast.LENGTH_LONG).show();
-                    createPost(email,pass1);
-
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction()
-                    .replace(R.id.home, FirstFragment.class, null)
-                    .setReorderingAllowed(true)
-                    .addToBackStack(null) // name can be null
-                    .commit();
-
-                }else{
-                    Toast.makeText(MainActivity.this, "diversi " , Toast.LENGTH_LONG).show();
-                }
-
-            }else{
-                Toast.makeText(MainActivity.this, "email non valida", Toast.LENGTH_LONG).show();
-            }
-        }else{
-            Toast.makeText(MainActivity.this, "compilare tutti i campi", Toast.LENGTH_LONG).show();
-        }
-
-
-
-    }
-
-    private void createPost(String email, String password){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.81:8080/progettoIUMTweb_war_exploded/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<Post> call = jsonPlaceHolderApi.createPost("registration",email,password);
-        call.enqueue(new Callback<Post>() {
-            @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-                    if(!response.isSuccessful()){
-                        Log.d("MainActivity", "CODE: "+response.code());
-                        return;
-                    }else{
-                        Toast.makeText(MainActivity.this, "registrazione effettuata", Toast.LENGTH_LONG).show();
-                    }
-
-
-
-            }
-
-            @Override
-            public void onFailure(Call<Post> call, Throwable t) {
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }*/
 }

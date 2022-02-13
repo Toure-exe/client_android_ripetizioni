@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_home"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/tutoring"
+            android:icon="@drawable/ic_menu_camera"
+            android:onClick="onOptionsItemSelected"
+            android:title="Book Tutoring" />
+        <item
+            android:id="@+id/active_booking"
+            android:icon="@drawable/ic_menu_gallery"
+            android:onClick="onOptionsItemSelected"
+            android:title="Active bookings" />
+        <item
+            android:id="@+id/booking_history"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:onClick="onOptionsItemSelected"
+            android:title="Booking history" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:onClick="onOptionsItemSelected"
+            android:title="logout" />
+    </group>
+</menu>

@@ -14,4 +14,12 @@ public interface JsonPlaceHolderApi {
             @Field("email") String email,
             @Field("password") String password
     );
+
+    @FormUrlEncoded
+    @POST("SessionServlet")
+    Call<String> createPostLogin(
+            @Field("submit") String submit,
+            @Field("email") String email,
+            @Field("password") String password
+    );
 }
