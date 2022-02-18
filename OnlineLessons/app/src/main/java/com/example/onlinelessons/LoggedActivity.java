@@ -31,6 +31,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.onlinelessons.databinding.ActivityLoggedBinding;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class LoggedActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -99,6 +105,7 @@ public class LoggedActivity extends AppCompatActivity {
                 Log.d("Logged","ENTRATO history");
                 return true;
             case R.id.logout:
+                createPostLogout();
                 Log.d("Logged","ENTRATO logout");
                 return true;
             default:
@@ -106,6 +113,38 @@ public class LoggedActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private void createPostLogout(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.81:8080/progettoIUMTweb_war_exploded/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<String> call = jsonPlaceHolderApi.createPostLogout("logout");
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(!response.isSuccessful()){
+                    Log.d("MainActivity", "HTTP CODE: "+response.code());
+                    return;
+                }else{
+                    String resp = response.body();
+                    if(resp.equals("logout")){
+                        Intent myIntent = new Intent(LoggedActivity.this, MainActivity.class);
+                        LoggedActivity.this.startActivity(myIntent);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                // Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Log.d("LoggedActivity", "FAILURE: "+t.getMessage());
+            }
+        });
     }
 
     @Override
