@@ -40,4 +40,42 @@ public interface JsonPlaceHolderApi {
     Call<List<StudentTutoring>> createPostGetHistory(
             @Query("submit") String submit
     );
+
+    @GET("SessionServlet")
+    Call<List<StudentTutoring>> createGetActiveBooking(
+            @Query("submit") String submit
+    );
+
+    @GET("SessionServlet")
+    Call<String> createGetConfirmTutoring(
+            @Query("submit") String submit,
+            @Query("date") String date,
+            @Query("hour") String hour,
+            @Query("teacher") String teacher,
+            @Query("subject") String subject
+    );
+
+    @FormUrlEncoded
+    @POST("SessionServlet")
+    Call<String> createPostCancelTutoring(
+            @Field("submit") String submit,
+            @Field("date") String date,
+            @Field("hour") String hour,
+            @Field("teacher") String teacher,
+            @Field("subject") String subject,
+            @Field("emailStudent") String emailStudent
+    );
+
+    @GET("MainServlet")
+    Call<List<String>> createGetSubjectAvailable(
+            @Query("submit") String submit
+    );
+
+    @GET("MainServlet")
+    Call<List<String>> createGetTeachers(
+            @Query("submit") String submit,
+            @Query("subject") String subject,
+            @Query("email") String email
+    );
+
 }

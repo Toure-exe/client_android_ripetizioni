@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.onlinelessons.ui.gallery.BookingFragment;
 import com.example.onlinelessons.ui.home.HomeFragment;
+import com.example.onlinelessons.ui.slideshow.ActiveFragment;
 import com.example.onlinelessons.ui.slideshow.SlideshowFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -95,7 +96,7 @@ public class LoggedActivity extends AppCompatActivity {
                 Log.d("Logged","ENTRATO TUTORING");
                 return true;
             case R.id.active_booking:
-                changeView(new HomeFragment());
+                changeView(new ActiveFragment());
                 drawer.closeDrawer(GravityCompat.START);
                 Log.d("Logged","ENTRATO BOOKING");
                 return true;
@@ -158,6 +159,7 @@ public class LoggedActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.frameLayout,fg);
+      //  ft.add(R.id.frameLayout, fg.getClass(), null);
         ft.commit();
     }
 }

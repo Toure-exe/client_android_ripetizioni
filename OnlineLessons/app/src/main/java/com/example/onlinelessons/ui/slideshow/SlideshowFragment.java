@@ -107,26 +107,31 @@ public class SlideshowFragment extends Fragment {
         TextView tv1 = new TextView(getActivity());
         tv1.setText("Subject");
         tv1.setTextColor(Color.BLACK);
+        tv1.setGravity(Gravity.CENTER);
         row.addView(tv1);
 
         TextView tv2 = new TextView(getActivity());
         tv2.setText("Teacher");
         tv2.setTextColor(Color.BLACK);
+        tv2.setGravity(Gravity.CENTER);
         row.addView(tv2);
 
         TextView tv3 = new TextView(getActivity());
         tv3.setText("Date");
         tv3.setTextColor(Color.BLACK);
+        tv3.setGravity(Gravity.CENTER);
         row.addView(tv3);
 
         TextView tv4 = new TextView(getActivity());
         tv4.setText("Hour");
         tv4.setTextColor(Color.BLACK);
+        tv4.setGravity(Gravity.CENTER);
         row.addView(tv4);
 
         TextView tv5 = new TextView(getActivity());
         tv5.setText("State");
         tv5.setTextColor(Color.BLACK);
+        tv5.setGravity(Gravity.CENTER);
         row.addView(tv5);
 
         tab.addView(row);
@@ -134,31 +139,31 @@ public class SlideshowFragment extends Fragment {
         for(StudentTutoring temp : resp){
             TableRow riga = new TableRow(getActivity());
             TextView t1v = new TextView(getActivity());
-            t1v.setText(" "+resp.get(i).getSubject()+" ");
+            t1v.setText(" "+temp.getSubject()+" ");
             t1v.setTextColor(Color.BLACK);
             t1v.setGravity(Gravity.CENTER);
             riga.addView(t1v);
 
             TextView t2v = new TextView(getActivity());
-            t2v.setText(" "+resp.get(i).getTeacher()+" ");
+            t2v.setText(" "+temp.getTeacher()+" ");
             t2v.setTextColor(Color.BLACK);
             t2v.setGravity(Gravity.CENTER);
             riga.addView(t2v);
 
             TextView t3v = new TextView(getActivity());
-            t3v.setText(" "+resp.get(i).getDate()+" ");
+            t3v.setText(" "+temp.getDate()+" ");
             t3v.setTextColor(Color.BLACK);
             t3v.setGravity(Gravity.CENTER);
             riga.addView(t3v);
 
             TextView t4v = new TextView(getActivity());
-            t4v.setText(" "+resp.get(i).getHour()+" ");
+            t4v.setText(" "+temp.getHour()+" ");
             t4v.setTextColor(Color.BLACK);
             t4v.setGravity(Gravity.CENTER);
             riga.addView(t4v);
 
             TextView t5v = new TextView(getActivity());
-            t5v.setText(" "+resp.get(i).getStatus()+" ");
+            t5v.setText(" "+temp.getStatus()+" ");
             t5v.setTextColor(Color.BLACK);
             t5v.setGravity(Gravity.CENTER);
             riga.addView(t5v);
