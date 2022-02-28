@@ -7,13 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".ui.slideshow.ActiveFragment">
 
+    <ScrollView
+        android:layout_width="408dp"
+        android:layout_height="637dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
     <TableLayout
         android:id="@+id/table_active"
-        android:layout_width="0dp"
-        android:layout_height="542dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="129dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,6 +34,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </TableLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/textView10"

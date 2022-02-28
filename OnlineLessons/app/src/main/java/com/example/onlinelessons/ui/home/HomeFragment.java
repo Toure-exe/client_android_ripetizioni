@@ -18,6 +18,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -25,6 +27,7 @@ import com.example.onlinelessons.JsonPlaceHolderApi;
 import com.example.onlinelessons.Model.StudentTutoring;
 import com.example.onlinelessons.R;
 import com.example.onlinelessons.databinding.FragmentHomeBinding;
+import com.example.onlinelessons.ui.slideshow.ActiveFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,14 +52,19 @@ public class HomeFragment extends Fragment {
 
       //  binding = FragmentHomeBinding.inflate(inflater, container, false);
         view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        changeFragment(new ImgpageFragment());
        //TableLayout tab = view.findViewById(R.id.table_active);
         //TableRow row = new TableRow(getActivity());
         //requestActiveBooking(tab,row);
         return view;
     }
 
-
+    private void changeFragment(Fragment fg){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frameLayout,fg);
+        ft.commit();
+    }
 
     @Override
     public void onDestroyView() {

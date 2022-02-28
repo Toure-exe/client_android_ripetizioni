@@ -139,31 +139,44 @@ public class SlideshowFragment extends Fragment {
         for(StudentTutoring temp : resp){
             TableRow riga = new TableRow(getActivity());
             TextView t1v = new TextView(getActivity());
-            t1v.setText(" "+temp.getSubject()+" ");
+            t1v.setText(temp.getSubject());
             t1v.setTextColor(Color.BLACK);
             t1v.setGravity(Gravity.CENTER);
             riga.addView(t1v);
 
             TextView t2v = new TextView(getActivity());
-            t2v.setText(" "+temp.getTeacher()+" ");
+            t2v.setText(temp.getTeacher()+" ");
             t2v.setTextColor(Color.BLACK);
             t2v.setGravity(Gravity.CENTER);
             riga.addView(t2v);
 
             TextView t3v = new TextView(getActivity());
-            t3v.setText(" "+temp.getDate()+" ");
+            t3v.setText(temp.getDate());
             t3v.setTextColor(Color.BLACK);
             t3v.setGravity(Gravity.CENTER);
             riga.addView(t3v);
 
             TextView t4v = new TextView(getActivity());
-            t4v.setText(" "+temp.getHour()+" ");
+            t4v.setText(temp.getHour());
             t4v.setTextColor(Color.BLACK);
             t4v.setGravity(Gravity.CENTER);
             riga.addView(t4v);
 
             TextView t5v = new TextView(getActivity());
-            t5v.setText(" "+temp.getStatus()+" ");
+            switch (temp.getStatus()){
+                case 0:
+                    t5v.setText("On going");
+                    break;
+                case 1:
+                    t5v.setText("Confirmed");
+                    break;
+                case 2:
+                    t5v.setText("Deleted");
+                    break;
+                default:
+                    break;
+            }
+          //  t5v.setText(" "+temp.getStatus()+" ");
             t5v.setTextColor(Color.BLACK);
             t5v.setGravity(Gravity.CENTER);
             riga.addView(t5v);

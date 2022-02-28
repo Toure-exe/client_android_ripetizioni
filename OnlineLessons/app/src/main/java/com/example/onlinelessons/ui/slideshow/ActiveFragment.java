@@ -175,22 +175,6 @@ public class ActiveFragment extends Fragment {
                 }
             });
 
-           /* cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view3) {
-                    TableRow row3 = (TableRow) view3.getParent();
-                    // It's index
-                    int index = (tab.indexOfChild(row3) - 1);
-                    String subject = resp.get(index).getSubject();
-                    String teacher = resp.get(index).getTeacher();
-                    String date = resp.get(index).getDate();
-                    String hour = resp.get(index).getHour();
-                    requestCancelTutoring(date,hour,teacher,subject,resp.get(index).getStudent(),view);
-                    reloadFragment(new ActiveFragment());
-
-
-                }
-            });*/
 
             tab.addView(riga);
 

@@ -1,6 +1,7 @@
 package com.example.onlinelessons;
 
 import com.example.onlinelessons.Model.StudentTutoring;
+import com.example.onlinelessons.Model.Tutoring;
 
 import java.util.List;
 
@@ -76,6 +77,22 @@ public interface JsonPlaceHolderApi {
             @Query("submit") String submit,
             @Query("subject") String subject,
             @Query("email") String email
+    );
+
+    @GET("MainServlet")
+    Call<List<Tutoring>> createGetTeacherAvailability(
+            @Query("submit") String submit,
+            @Query("subject") String subject,
+            @Query("teacher") String teacher
+    );
+
+    @GET("SessionServlet")
+    Call<String> createGetInsertBooking(
+            @Query("submit") String submit,
+            @Query("teacher") String teacher,
+            @Query("subject") String subject,
+            @Query("day") String day,
+            @Query("hour") String hour
     );
 
 }

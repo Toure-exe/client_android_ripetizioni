@@ -6,36 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".ui.slideshow.SlideshowFragment">
 
-    <TableLayout
-        android:id="@+id/tab_history"
-        android:layout_width="377dp"
-        android:layout_height="457dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="118dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="142dp"
+    <ScrollView
+        android:layout_width="408dp"
+        android:layout_height="637dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </TableLayout>
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="169dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="184dp"
-        android:layout_marginBottom="658dp"
-        android:text="HISTORY"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.208"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0">
+        <TableLayout
+            android:id="@+id/tab_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="142dp"
+            android:persistentDrawingCache="scrolling"
+            android:scrollbars="horizontal|vertical">
+
+        </TableLayout>
+
+
+</ScrollView>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="169dp"
+            android:layout_marginTop="54dp"
+            android:layout_marginEnd="184dp"
+            android:layout_marginBottom="658dp"
+            android:text="HISTORY"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
