@@ -2,7 +2,6 @@ package com.example.onlinelessons;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.onlinelessons.databinding.FragmentSecondBinding;
 
@@ -28,12 +26,8 @@ public class SecondFragment extends Fragment {
     private View view;
 
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-       // binding = FragmentSecondBinding.inflate(inflater, container, false);
         view = inflater.inflate(R.layout.fragment_second, container, false);
 
         Button loginButton = view.findViewById(R.id.button_second);
@@ -87,21 +81,18 @@ public class SecondFragment extends Fragment {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if(!response.isSuccessful()){
-                    Log.d("MainActivity", "HTTP CODE: "+response.code());
+                    Toast.makeText(view.getContext(),"HTTP ERROR CODE: "+response.code(),Toast.LENGTH_SHORT).show();
                     return;
                 }else{
-
                     String resp = response.body();
                     if(resp.equals("1")){
                         Intent myIntent = new Intent(getActivity(), LoggedActivity.class);
                         myIntent.putExtra("email",email); //Optional parameters
                         getActivity().startActivity(myIntent);
 
-
                     }else if(resp.equals("0")){
                         Toast.makeText(getActivity(),"User not found! ",Toast.LENGTH_SHORT).show();
                     }
-                    Log.d("MainActivity", "RESPONSE LOGIN: "+resp+ ",TIPO: "+ resp.getClass());
 
                 }
 
@@ -110,12 +101,8 @@ public class SecondFragment extends Fragment {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                // Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
-                Log.d("MainActivity", "FAILURE");
+                Toast.makeText(view.getContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-
-
 }

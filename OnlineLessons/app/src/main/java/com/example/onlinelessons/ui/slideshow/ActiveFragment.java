@@ -150,11 +150,8 @@ public class ActiveFragment extends Fragment {
             riga.addView(t4v);
 
             Button actions = new Button(getActivity());
-            Button cancel = new Button(getActivity());
             actions.setText("ACTIONS");
-           // cancel.setText("CANCEL");
             riga.addView(actions);
-           // riga.addView(cancel);
 
             actions.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -185,90 +182,4 @@ public class ActiveFragment extends Fragment {
         AlertPane exampleDialog = new AlertPane(subject,teacher,date,hour,emailStudent, view);
         exampleDialog.show(getActivity().getSupportFragmentManager(), "actions dialog");
     }
-
-    public void requestCancelTutoring(String date, String hour, String teacher, String subject, String emailStudent,View view){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.81:8080/progettoIUMTweb_war_exploded/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<String> call = jsonPlaceHolderApi.createPostCancelTutoring("deleteTutoring",date,hour,teacher,subject,emailStudent);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(!response.isSuccessful()){
-                    Log.d("LoggedActivity", "HTTP CODE: "+response.code());
-                }else{
-
-                    String resp = response.body();
-
-                    if(resp.equals("true")){
-                        //Log.d("Confirm tutoring","TRUE");
-                        //AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
-                        Toast.makeText(view.getContext(),"Your booking has been successfully deleted",Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(view.getContext(),"Error, please retry",Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                // Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
-                Log.d("active", "FAILURE: "+t.getMessage());
-            }
-        });
-
-    }
-
-    private void requestConfirmTutoring(String date, String hour, String teacher, String subject, View view){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.81:8080/progettoIUMTweb_war_exploded/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        Call<String> call = jsonPlaceHolderApi.createGetConfirmTutoring("confirmTutoring",date,hour,teacher,subject);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if(!response.isSuccessful()){
-                    Log.d("LoggedActivity", "HTTP CODE: "+response.code());
-                    return;
-                }else{
-
-                    String resp = response.body();
-
-                    if(resp.equals("true")){
-                        //Log.d("Confirm tutoring","TRUE");
-                        //AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
-                         Toast.makeText(view.getContext(),"Your booking has been successfully confirmed",Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(view.getContext(),"Error, please retry",Toast.LENGTH_SHORT).show();
-                    }
-
-                    return;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                // Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
-                Log.d("active", "FAILURE: "+t.getMessage());
-            }
-        });
-
-    }
-
-    private void reloadFragment(Fragment fg){
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.frameLayout,fg);
-        ft.commit();
-    }
-
-
 }

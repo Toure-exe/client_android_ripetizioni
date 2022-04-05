@@ -16,7 +16,7 @@ public interface JsonPlaceHolderApi {
 
     @FormUrlEncoded
     @POST("MainServlet")
-    Call<Post> createPost(
+    Call<String> createPost(
             @Field("submit") String submit,
             @Field("email") String email,
             @Field("password") String password

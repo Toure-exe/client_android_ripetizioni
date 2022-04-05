@@ -50,7 +50,7 @@ public class SlideshowFragment extends Fragment {
         slideshowViewModel =
                 new ViewModelProvider(this).get(SlideshowViewModel.class);
 
-       // binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+
         view = inflater.inflate(R.layout.fragment_slideshow, container, false);
         TableLayout tab = view.findViewById(R.id.tab_history);
         TableRow row = new TableRow(getActivity());
@@ -86,8 +86,6 @@ public class SlideshowFragment extends Fragment {
                 }else{
                     List<StudentTutoring> resp = new ArrayList<>();
                     resp = response.body();
-                    Log.d("History:"," "+resp.size());
-                    Log.d("history"," "+resp.get(0).getSubject());
                     printTable(tab,row,resp);
                     return;
                 }

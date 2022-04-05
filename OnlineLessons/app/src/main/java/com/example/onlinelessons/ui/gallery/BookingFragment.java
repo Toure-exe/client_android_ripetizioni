@@ -108,7 +108,7 @@ public class BookingFragment extends Fragment implements AdapterView.OnItemSelec
                         Toast.makeText(view.getContext(),"Your booking has been correctly inserted in the system",Toast.LENGTH_SHORT).show();
                         reloadFragment(new BookingFragment());
                     }else {
-                        Toast.makeText(view.getContext(),"error, please retry",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(),"Error, please retry",Toast.LENGTH_SHORT).show();
 
                     }
 

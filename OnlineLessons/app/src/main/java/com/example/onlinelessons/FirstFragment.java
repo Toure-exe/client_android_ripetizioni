@@ -17,10 +17,7 @@ public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
 
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -39,7 +36,7 @@ public class FirstFragment extends Fragment {
         });
 
         Button reg = view.findViewById(R.id.button_first2);
-       reg.setOnClickListener(new View.OnClickListener() {
+        reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(FirstFragment.this)

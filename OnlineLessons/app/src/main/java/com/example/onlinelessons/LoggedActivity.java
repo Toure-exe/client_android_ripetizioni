@@ -159,7 +159,6 @@ public class LoggedActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.frameLayout,fg);
-      //  ft.add(R.id.frameLayout, fg.getClass(), null);
         ft.commit();
     }
 }
