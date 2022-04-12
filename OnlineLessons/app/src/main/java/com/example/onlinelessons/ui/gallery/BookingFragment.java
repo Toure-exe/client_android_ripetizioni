@@ -3,25 +3,17 @@ package com.example.onlinelessons.ui.gallery;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.onlinelessons.JsonPlaceHolderApi;
 import com.example.onlinelessons.Model.Tutoring;
@@ -39,7 +31,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BookingFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    private BookingViewModel bookingViewModel;
     private FragmentBookingBinding binding;
     private View view;
     private static List<Tutoring> currentTutoring = new ArrayList<>();
@@ -76,14 +67,8 @@ public class BookingFragment extends Fragment implements AdapterView.OnItemSelec
                 }else{
                     Toast.makeText(view.getContext(),"You must fill in the fields",Toast.LENGTH_SHORT).show();
                 }
-
-
-
-
             }
         });
-
-
 
         return view;
     }
@@ -102,23 +87,18 @@ public class BookingFragment extends Fragment implements AdapterView.OnItemSelec
                 if(!response.isSuccessful()){
                     Log.d("insert Booking:", "HTTP CODE: "+response.code());
                 }else{
-
                     String resp = response.body();
-                   if(resp.equals("true")){
+                    if(resp.equals("true")){
                         Toast.makeText(view.getContext(),"Your booking has been correctly inserted in the system",Toast.LENGTH_SHORT).show();
                         reloadFragment(new BookingFragment());
                     }else {
                         Toast.makeText(view.getContext(),"Error, please retry",Toast.LENGTH_SHORT).show();
-
                     }
-
-
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                // Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
                 Log.d("insert booking", "FAILURE: "+t.getMessage());
             }
         });
@@ -146,19 +126,15 @@ public class BookingFragment extends Fragment implements AdapterView.OnItemSelec
                 if(!response.isSuccessful()){
                     Log.d("LoggedActivity", "HTTP CODE: "+response.code());
                 }else{
-
                     List<String> resp = new ArrayList<>();
                     resp = response.body();
                     resp.add(0,"Select a subject");
                     fillSpinner(resp,R.id.spinnerMateria);
-
-
                 }
             }
 
             @Override
             public void onFailure(Call<List<String>> call, Throwable t) {
-                // Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
                 Log.d("active", "FAILURE: "+t.getMessage());
             }
         });
@@ -179,18 +155,15 @@ public class BookingFragment extends Fragment implements AdapterView.OnItemSelec
                 if(!response.isSuccessful()){
                     Log.d("LoggedActivity", "HTTP CODE: "+response.code());
                 }else{
-
                     List<String> resp = new ArrayList<>();
                     resp = response.body();
                     resp.add(0,"Select a teacher");
                     fillSpinner(resp,R.id.spinnerProf);
-
                 }
             }
 
             @Override
             public void onFailure(Call<List<String>> call, Throwable t) {
-                // Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
                 Log.d("active", "FAILURE: "+t.getMessage());
             }
         });
@@ -223,17 +196,12 @@ public class BookingFragment extends Fragment implements AdapterView.OnItemSelec
                 if(!response.isSuccessful()){
                     Log.d("requestAvailability", "HTTP CODE: "+response.code());
                 }else{
-
-                   // List<Tutoring> resp = new ArrayList<>();
                     currentTutoring = response.body();
-                  //  fillSpinner(resp,R.id.spinnerProf);
-
                 }
             }
 
             @Override
             public void onFailure(Call<List<Tutoring>> call, Throwable t) {
-                // Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
                 Log.d("active", "FAILURE: "+t.getMessage());
             }
         });
@@ -299,6 +267,7 @@ public class BookingFragment extends Fragment implements AdapterView.OnItemSelec
                 if(!subject.equals("Select a subject"))
                     requestTeachers(subject);
                 break;
+
             case R.id.spinnerProf:
                 String teacherSelected = adapterView.getItemAtPosition(i).toString();
                 if(!teacherSelected.equals("Select a teacher")){
@@ -309,8 +278,8 @@ public class BookingFragment extends Fragment implements AdapterView.OnItemSelec
                     String subjectSelected = mySpinner.getSelectedItem().toString();
                     requestAvailability(subjectSelected,teacherSelected);
                 }
-
                 break;
+
             case R.id.spinnerGiorno:
                 String daySelected = adapterView.getItemAtPosition(i).toString();
                 if(!daySelected.equals("Select a day")){
@@ -318,6 +287,7 @@ public class BookingFragment extends Fragment implements AdapterView.OnItemSelec
                     fillSpinner(hoursList,R.id.spinnerOra);
                 }
                 break;
+
             default:
                 Log.d("SPINNER","SPINNER ID DOESN'T EXISTS");
                 break;

@@ -5,15 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
 import android.widget.TextView;
 
 
 import com.example.onlinelessons.ui.gallery.BookingFragment;
-import com.example.onlinelessons.ui.home.HomeFragment;
 import com.example.onlinelessons.ui.slideshow.ActiveFragment;
 import com.example.onlinelessons.ui.slideshow.SlideshowFragment;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -23,7 +20,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -53,6 +49,9 @@ public class LoggedActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tb);
+        TextView textView = (TextView)tb.findViewById(R.id.custom_title);
+        textView.setText("Your personal Area");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -79,41 +78,27 @@ public class LoggedActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.logged, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Log.d("Logged",""+item.getItemId());
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         switch (item.getItemId()) {
             case R.id.tutoring:
                 changeView(new BookingFragment());
                 drawer.closeDrawer(GravityCompat.START);
-                Log.d("Logged","ENTRATO TUTORING");
                 return true;
             case R.id.active_booking:
                 changeView(new ActiveFragment());
                 drawer.closeDrawer(GravityCompat.START);
-                Log.d("Logged","ENTRATO BOOKING");
                 return true;
             case R.id.booking_history:
                 changeView(new SlideshowFragment());
                 drawer.closeDrawer(GravityCompat.START);
-                Log.d("Logged","ENTRATO history");
                 return true;
             case R.id.logout:
                 createPostLogout();
-                Log.d("Logged","ENTRATO logout");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
 
     private void createPostLogout(){
@@ -142,7 +127,6 @@ public class LoggedActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                // Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
                 Log.d("LoggedActivity", "FAILURE: "+t.getMessage());
             }
         });

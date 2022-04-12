@@ -93,10 +93,7 @@ public class SecondFragment extends Fragment {
                     }else if(resp.equals("0")){
                         Toast.makeText(getActivity(),"User not found! ",Toast.LENGTH_SHORT).show();
                     }
-
                 }
-
-
             }
 
             @Override

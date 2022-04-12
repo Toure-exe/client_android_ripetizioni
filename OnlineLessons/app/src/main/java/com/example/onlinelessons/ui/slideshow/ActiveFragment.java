@@ -1,14 +1,11 @@
 package com.example.onlinelessons.ui.slideshow;
 
-import android.app.AlertDialog;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.Gravity;
@@ -29,8 +26,6 @@ import com.example.onlinelessons.R;
 import java.util.ArrayList;
 import java.util.List;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,8 +38,7 @@ public class ActiveFragment extends Fragment {
     private View view;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        // return inflater.inflate(R.layout.fragment_active, container, false);
         view = inflater.inflate(R.layout.fragment_active, container, false);
@@ -78,16 +72,17 @@ public class ActiveFragment extends Fragment {
                 }else{
                     List<StudentTutoring> resp = new ArrayList<>();
                     resp = response.body();
-                   // Log.d("active:"," "+resp.size());
-                   // Log.d("active"," "+resp.get(0).getSubject());
-                    printTable(tab,row,resp);
+                    if(!resp.isEmpty())
+                        printTable(tab,row,resp);
+                    else
+                        Toast.makeText(view.getContext(),"The list is empty",Toast.LENGTH_SHORT).show();
+
                     return;
                 }
             }
 
             @Override
             public void onFailure(Call<List<StudentTutoring>> call, Throwable t) {
-                // Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
                 Log.d("active", "FAILURE: "+t.getMessage());
             }
         });
@@ -157,24 +152,16 @@ public class ActiveFragment extends Fragment {
                 @Override
                 public void onClick(View view2) {
                     TableRow row2 = (TableRow) view2.getParent();
-                    // It's index
                     int index = (tab.indexOfChild(row2) - 1);
                     String subject = resp.get(index).getSubject();
                     String teacher = resp.get(index).getTeacher();
                     String date = resp.get(index).getDate();
                     String hour = resp.get(index).getHour();
                     String emailStudent = resp.get(index).getStudent();
-                    //requestConfirmTutoring(date,hour,teacher,subject,view);
                     openDialog(subject,teacher, date, hour,emailStudent, tempView);
-                    //reloadFragment(new ActiveFragment());
-
-
                 }
             });
-
-
             tab.addView(riga);
-
         }
     }
 

@@ -4,16 +4,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -91,8 +87,6 @@ public class AlertPane extends AppCompatDialogFragment {
                     String resp = response.body();
 
                     if(resp.equals("true")){
-                        //Log.d("Confirm tutoring","TRUE");
-                        //AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
                         Toast.makeText(view.getContext(),"Your booking has been successfully deleted",Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(view.getContext(),"Error, please retry",Toast.LENGTH_SHORT).show();
@@ -103,7 +97,6 @@ public class AlertPane extends AppCompatDialogFragment {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                // Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_SHORT).show();
                 Log.d("active", "FAILURE: "+t.getMessage());
             }
         });
@@ -130,8 +123,6 @@ public class AlertPane extends AppCompatDialogFragment {
                     String resp = response.body();
 
                     if(resp.equals("true")){
-                        //Log.d("Confirm tutoring","TRUE");
-                        //AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
                         Toast.makeText(view.getContext(),"Your booking has been successfully confirmed",Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(view.getContext(),"Error, please retry",Toast.LENGTH_SHORT).show();
